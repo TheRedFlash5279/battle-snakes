@@ -40,7 +40,7 @@ f f f f f f f f f f f f f f f f
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite2,
+    mySprite,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -62,11 +62,11 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite2.setVelocity(-50, 0)
+    mySprite.setVelocity(-50, 0)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite2,
+    mySprite,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -88,14 +88,32 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite2.setVelocity(0, 50)
+    mySprite.setVelocity(0, 50)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    tiles.placeOnRandomTile(mySprite22, sprites.castle.tileGrass2)
+    tiles.placeOnRandomTile(mySprite2, sprites.castle.tileGrass2)
+    mySprite3 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . f f f f f f f . . . . 
+. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . . f f f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Player)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite2,
+    mySprite,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -117,11 +135,11 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite2.setVelocity(50, 0)
+    mySprite.setVelocity(50, 0)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite2,
+    mySprite,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -143,11 +161,12 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite2.setVelocity(0, -50)
+    mySprite.setVelocity(0, -50)
 })
-let mySprite22: Sprite = null
+let mySprite3: Sprite = null
 let mySprite2: Sprite = null
-mySprite2 = sprites.create(img`
+let mySprite: Sprite = null
+mySprite = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -188,8 +207,8 @@ tiles.setTilemap(tiles.createTilemap(
             [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass3,sprites.castle.tileGrass2,myTiles.tile1],
             TileScale.Sixteen
         ))
-mySprite2.setFlag(SpriteFlag.StayInScreen, true)
-mySprite22 = sprites.create(img`
+mySprite.setFlag(SpriteFlag.StayInScreen, true)
+mySprite2 = sprites.create(img`
 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
@@ -207,4 +226,4 @@ mySprite22 = sprites.create(img`
 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
 `, SpriteKind.Food)
-mySprite22.setPosition(73, 57)
+mySprite2.setPosition(73, 57)
