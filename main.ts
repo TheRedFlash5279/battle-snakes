@@ -62,7 +62,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(-50, 0)
+    mySprite.setVelocity(-80, 0)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -88,11 +88,13 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(0, 50)
+    mySprite.setVelocity(0, 80)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     tiles.placeOnRandomTile(mySprite2, sprites.castle.tileGrass2)
-    mySprite3 = sprites.create(img`
+    info.changeScoreBy(1)
+    if (info.score() == 1) {
+        mySprite3 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
@@ -109,7 +111,75 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, SpriteKind.Player)
+`, SpriteKind.Enemy)
+        mySprite3.follow(mySprite, 75)
+    }
+    if (info.score() == 2) {
+        MySprite4 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . f f f f f f f . . . . 
+. . . . f 8 8 8 8 8 8 8 f . . . 
+. . . . f 8 8 8 8 8 8 8 f . . . 
+. . . . f 8 8 8 8 8 8 8 f . . . 
+. . . . f 8 8 8 8 8 8 8 f . . . 
+. . . . f 8 8 8 8 8 8 8 f . . . 
+. . . . f 8 8 8 8 8 8 8 f . . . 
+. . . . f 8 8 8 8 8 8 8 f . . . 
+. . . . . f f f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+        MySprite4.follow(mySprite, 65)
+    }
+    if (info.score() == 3) {
+        mySprite3 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . f f f f f f f . . . . 
+. . . . f c c c c c c c f . . . 
+. . . . f c c c c c c c f . . . 
+. . . . f c c c c c c c f . . . 
+. . . . f c c c c c c c f . . . 
+. . . . f c c c c c c c f . . . 
+. . . . f c c c c c c c f . . . 
+. . . . f c c c c c c c f . . . 
+. . . . . f f f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+        mySprite3.follow(mySprite, 55)
+    }
+    if (info.score() == 4) {
+        mySprite3 = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . f f f f f f f . . . . 
+. . . . f 5 5 5 5 5 5 5 f . . . 
+. . . . f 5 5 5 5 5 5 5 f . . . 
+. . . . f 5 5 5 5 5 5 5 f . . . 
+. . . . f 5 5 5 5 5 5 5 f . . . 
+. . . . f 5 5 5 5 5 5 5 f . . . 
+. . . . f 5 5 5 5 5 5 5 f . . . 
+. . . . f 5 5 5 5 5 5 5 f . . . 
+. . . . . f f f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+        mySprite3.follow(mySprite, 45)
+    }
+    if (info.score() == 5) {
+    	
+    }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -135,7 +205,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(50, 0)
+    mySprite.setVelocity(80, 0)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -161,8 +231,9 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(0, -50)
+    mySprite.setVelocity(0, -80)
 })
+let MySprite4: Sprite = null
 let mySprite3: Sprite = null
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
@@ -207,6 +278,7 @@ tiles.setTilemap(tiles.createTilemap(
             [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass3,sprites.castle.tileGrass2,myTiles.tile1],
             TileScale.Sixteen
         ))
+mySprite.setPosition(79, 24)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 mySprite2 = sprites.create(img`
 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
