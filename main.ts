@@ -178,7 +178,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
         mySprite3.follow(mySprite, 45)
     }
     if (info.score() == 5) {
-    	
+        mySprite.say("I'm to full to eat!", 2000)
     }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
