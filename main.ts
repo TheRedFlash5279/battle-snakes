@@ -1,5 +1,7 @@
 namespace SpriteKind {
     export const player2 = SpriteKind.create()
+    export const Enemy2 = SpriteKind.create()
+    export const Enemy3 = SpriteKind.create()
 }
 namespace myTiles {
     //% blockIdentity=images._tile
@@ -43,7 +45,7 @@ f f f f f f f f f f f f f f f f
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite,
+    MC,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -65,11 +67,11 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(-80, 0)
+    MC.setVelocity(-80, 0)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite,
+    MC,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -91,11 +93,11 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(0, 80)
+    MC.setVelocity(0, 80)
 })
 controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite5,
+    E3,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -120,107 +122,116 @@ controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pr
 })
 sprites.onOverlap(SpriteKind.player2, SpriteKind.Food, function (sprite, otherSprite) {
     tiles.placeOnRandomTile(mySprite2, sprites.castle.tileGrass2)
-    info.changeScoreBy(1)
-    if (info.score() == 1) {
-        mySprite3 = sprites.create(img`
+    info.player2.changeScoreBy(1)
+    if (info.player2.score() == 1) {
+        M1 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
 . . . . . f f f f f f f . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-        mySprite3.follow(mySprite, 75)
+`, SpriteKind.Enemy2)
+        M1.follow(Dude, 75)
         info.changeLifeBy(1)
     }
-    if (info.score() == 2) {
-        MySprite4 = sprites.create(img`
+    if (info.player2.score() == 2) {
+        M2 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
 . . . . . f f f f f f f . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-        MySprite4.follow(mySprite, 65)
+`, SpriteKind.Enemy2)
+        M2.follow(Dude, 65)
         info.changeLifeBy(1)
     }
-    if (info.score() == 3) {
-        mySprite3 = sprites.create(img`
+    if (info.player2.score() == 3) {
+        M3 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
 . . . . . f f f f f f f . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-        mySprite3.follow(mySprite, 55)
+`, SpriteKind.Enemy2)
+        M3.follow(Dude, 55)
         info.changeLifeBy(1)
     }
-    if (info.score() == 4) {
-        mySprite3 = sprites.create(img`
+    if (info.player2.score() == 4) {
+        M4 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
-. . . . f 2 2 2 2 2 2 2 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
+. . . . f 6 6 6 6 6 6 6 f . . . 
 . . . . . f f f f f f f . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-        mySprite3.follow(mySprite, 45)
+`, SpriteKind.Enemy2)
+        M4.follow(Dude, 45)
         info.changeLifeBy(1)
     }
-    if (info.score() == 5) {
-        mySprite.say("I'm to full!", 2000)
-        info.changeLifeBy(1)
-        info.changeScoreBy(-1)
-        info.changeLifeBy(-1)
+    if (info.player2.score() == 5) {
+        Dude.say("I'm to full!", 2000)
+        info.player2.changeLifeBy(1)
+        info.player2.changeScoreBy(-1)
+        info.player2.changeLifeBy(-1)
     }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy3, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    info.changeScoreBy(-1)
+    pause(200)
+})
+sprites.onOverlap(SpriteKind.player2, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.player2.changeLifeBy(-1)
+    pause(200)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     tiles.placeOnRandomTile(mySprite2, sprites.castle.tileGrass2)
     info.changeScoreBy(1)
     if (info.score() == 1) {
-        mySprite3 = sprites.create(img`
+        E1 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
@@ -238,11 +249,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Enemy)
-        mySprite3.follow(mySprite, 75)
+        E1.follow(MC, 75)
         info.changeLifeBy(1)
     }
     if (info.score() == 2) {
-        MySprite4 = sprites.create(img`
+        E2 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
@@ -260,11 +271,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Enemy)
-        MySprite4.follow(mySprite, 65)
+        E2.follow(MC, 65)
         info.changeLifeBy(1)
     }
     if (info.score() == 3) {
-        mySprite3 = sprites.create(img`
+        E3 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
@@ -282,11 +293,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Enemy)
-        mySprite3.follow(mySprite, 55)
+        E3.follow(MC, 55)
         info.changeLifeBy(1)
     }
     if (info.score() == 4) {
-        mySprite3 = sprites.create(img`
+        E4 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . f f f f f f f . . . . 
@@ -304,11 +315,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Enemy)
-        mySprite3.follow(mySprite, 45)
+        E4.follow(MC, 45)
         info.changeLifeBy(1)
     }
     if (info.score() == 5) {
-        mySprite.say("I'm to full!", 2000)
+        MC.say("I'm to full!", 2000)
         info.changeLifeBy(1)
         info.changeScoreBy(-1)
         info.changeLifeBy(-1)
@@ -316,7 +327,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite5,
+    E3,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -341,7 +352,7 @@ controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pr
 })
 controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite5,
+    E3,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -366,7 +377,7 @@ controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite,
+    MC,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -388,11 +399,15 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(80, 0)
+    MC.setVelocity(80, 0)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy2, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    pause(200)
 })
 controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite5,
+    E3,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -417,7 +432,7 @@ controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    mySprite,
+    MC,
     [img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -439,15 +454,22 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    mySprite.setVelocity(0, -80)
+    MC.setVelocity(0, -80)
 })
-let MySprite4: Sprite = null
-let mySprite3: Sprite = null
-let mySprite5: Sprite = null
+let E4: Sprite = null
+let E2: Sprite = null
+let E1: Sprite = null
+let M4: Sprite = null
+let M3: Sprite = null
+let M2: Sprite = null
+let M1: Sprite = null
+let E3: Sprite = null
 let mySprite2: Sprite = null
-let mySprite: Sprite = null
+let Dude: Sprite = null
+let MC: Sprite = null
 info.setLife(1)
-mySprite = sprites.create(img`
+info.player2.setLife(1)
+MC = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -465,6 +487,24 @@ mySprite = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
+Dude = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f c c c c c c c f . . . . 
+. . . f c 1 1 c c c c f . . . . 
+. . . f 1 1 1 1 1 c 1 f . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . f 1 f f 1 f 1 1 f . . . . 
+. . . f 1 f f 1 1 f 1 f . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . . f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.player2)
 tiles.setTilemap(tiles.createTilemap(
             hex`1000100001010101010101010301040404040404010301010101010101010404040404040101010101010101010104040404040401010101010101010101040404040404030101010103020101010404040404040101010101010101010104040404040401010301010101010301040404040404010101010101010101010404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404`,
             img`
@@ -488,8 +528,8 @@ tiles.setTilemap(tiles.createTilemap(
             [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass3,sprites.castle.tileGrass2,myTiles.tile1],
             TileScale.Sixteen
         ))
-mySprite.setPosition(79, 24)
-mySprite.setFlag(SpriteFlag.StayInScreen, true)
+MC.setPosition(79, 24)
+MC.setFlag(SpriteFlag.StayInScreen, true)
 mySprite2 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -508,22 +548,22 @@ mySprite2 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Food)
-mySprite2.setPosition(73, 57)
-mySprite5 = sprites.create(img`
+let Test = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . f f f f f f f . . . . . 
-. . . f c c c c c c c f . . . . 
-. . . f c 1 1 c c c c f . . . . 
-. . . f 1 1 1 1 1 c 1 f . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
-. . . f 1 f f 1 f 1 1 f . . . . 
-. . . f 1 f f 1 1 f 1 f . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . f 2 2 2 2 2 2 2 f . . . . 
+. . f 2 1 1 1 1 1 1 1 2 f . . . 
+. . f 2 1 2 2 2 2 2 1 2 f . . . 
+. . f 2 1 2 1 1 1 2 1 2 f . . . 
+. . f 2 1 2 1 2 1 2 1 2 f . . . 
+. . f 2 1 2 1 1 1 2 1 2 f . . . 
+. . f 2 1 2 2 2 2 2 1 2 f . . . 
+. . f 2 1 1 1 1 1 1 1 2 f . . . 
+. . . f 2 2 2 2 2 2 2 f . . . . 
 . . . . f f f f f f f . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.player2)
+`, SpriteKind.Enemy3)
+Test.setPosition(27, 71)
