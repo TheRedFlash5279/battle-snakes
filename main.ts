@@ -220,12 +220,33 @@ sprites.onOverlap(SpriteKind.player2, SpriteKind.Food, function (sprite, otherSp
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy3, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
-    info.changeScoreBy(-1)
     pause(200)
+    if (info.life() < 1) {
+        E1.destroy()
+    } else if (info.life() < 2) {
+        E2.destroy()
+    } else if (info.life() < 3) {
+        E3.destroy()
+    } else if (info.life() < 4) {
+        E4.destroy()
+    } else if (info.life() == 1) {
+        game.over(false)
+    }
 })
 sprites.onOverlap(SpriteKind.player2, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.player2.changeLifeBy(-1)
     pause(200)
+    if (info.player2.score() == 1) {
+        M1.destroy()
+    } else if (info.player2.score() == 2) {
+        M2.destroy()
+    } else if (info.player2.score() == 3) {
+        M3.destroy()
+    } else if (info.player2.score() == 4) {
+        M4.destroy()
+    } else {
+        game.splash("Ow!")
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     tiles.placeOnRandomTile(mySprite2, sprites.castle.tileGrass2)
@@ -400,10 +421,6 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
     MC.setVelocity(80, 0)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy2, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
-    pause(200)
 })
 controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
