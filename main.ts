@@ -472,6 +472,7 @@ let E1: Sprite = null
 let mySprite2: Sprite = null
 let MB: Sprite = null
 let MC: Sprite = null
+game.splash("You need 2 players to play!")
 info.setLife(5)
 info.player2.setLife(5)
 info.setScore(5)
