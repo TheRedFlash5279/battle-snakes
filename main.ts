@@ -43,7 +43,7 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 `
 }
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     MC,
     [img`
@@ -51,39 +51,13 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . f f f f f f f . . . . . 
-. . . f 2 2 1 1 1 1 1 f . . . . 
-. . . f 2 1 1 1 1 f 1 f . . . . 
-. . . f 2 1 1 1 f 1 1 f . . . . 
-. . . f 2 2 1 1 1 1 1 f . . . . 
-. . . f 2 2 1 1 f f 1 f . . . . 
-. . . f 2 2 2 1 f f 1 f . . . . 
-. . . f 2 2 1 1 1 1 1 f . . . . 
-. . . . f f f f f f f . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`],
-    100,
-    false
-    )
-    MC.setVelocity(-80, 0)
-})
-controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    MC,
-    [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f f f f f f f . . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
-. . . f 1 f 1 1 f f 1 f . . . . 
-. . . f 1 1 f 1 f f 1 f . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
-. . . f 1 1 1 1 1 2 1 f . . . . 
-. . . f 2 2 1 2 2 2 2 f . . . . 
 . . . f 2 2 2 2 2 2 2 f . . . . 
+. . . f 2 2 2 2 1 1 2 f . . . . 
+. . . f 1 2 1 1 1 1 1 f . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . f 1 f f 1 f 1 1 f . . . . 
+. . . f 1 f f 1 1 f 1 f . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
 . . . . f f f f f f f . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -93,7 +67,12 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     100,
     false
     )
-    MC.setVelocity(0, 80)
+    MC.setVelocity(0, -80)
+})
+sprites.onOverlap(SpriteKind.player2, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.player2.changeLifeBy(-1)
+    info.player2.changeScoreBy(-1)
+    pause(500)
 })
 controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -222,9 +201,162 @@ sprites.onOverlap(SpriteKind.player2, SpriteKind.Food, function (sprite, otherSp
         MB.say("I'm to full!", 2000)
     }
 })
-sprites.onOverlap(SpriteKind.player2, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.player2.changeLifeBy(-1)
-    info.player2.changeScoreBy(-1)
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    MC,
+    [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f 2 2 1 1 1 1 1 f . . . . 
+. . . f 2 1 1 1 1 f 1 f . . . . 
+. . . f 2 1 1 1 f 1 1 f . . . . 
+. . . f 2 2 1 1 1 1 1 f . . . . 
+. . . f 2 2 1 1 f f 1 f . . . . 
+. . . f 2 2 2 1 f f 1 f . . . . 
+. . . f 2 2 1 1 1 1 1 f . . . . 
+. . . . f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`],
+    100,
+    false
+    )
+    MC.setVelocity(-80, 0)
+})
+controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    E3,
+    [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f c c c c c c c f . . . . 
+. . . f c c c c 1 1 c f . . . . 
+. . . f 1 c 1 1 1 1 1 f . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . f 1 f f 1 f 1 1 f . . . . 
+. . . f 1 f f 1 1 f 1 f . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . . f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`],
+    100,
+    false
+    )
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    MC,
+    [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f 1 1 1 1 1 2 2 f . . . . 
+. . . f 1 f 1 1 2 2 2 f . . . . 
+. . . f 1 1 f 1 1 2 2 f . . . . 
+. . . f 1 1 1 1 1 2 2 f . . . . 
+. . . f 1 f f 1 1 1 2 f . . . . 
+. . . f 1 f f 1 1 1 2 f . . . . 
+. . . f 1 1 1 1 1 2 2 f . . . . 
+. . . . f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`],
+    100,
+    false
+    )
+    MC.setVelocity(80, 0)
+})
+controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    E3,
+    [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f 1 1 1 1 1 c c f . . . . 
+. . . f 1 f 1 1 c c c f . . . . 
+. . . f 1 1 f 1 1 c c f . . . . 
+. . . f 1 1 1 1 1 c c f . . . . 
+. . . f 1 f f 1 1 1 c f . . . . 
+. . . f 1 f f 1 1 1 c f . . . . 
+. . . f 1 1 1 1 1 c c f . . . . 
+. . . . f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`],
+    100,
+    false
+    )
+})
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    MC,
+    [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . f 1 f 1 1 f f 1 f . . . . 
+. . . f 1 1 f 1 f f 1 f . . . . 
+. . . f 1 1 1 1 1 1 1 f . . . . 
+. . . f 1 1 1 1 1 2 1 f . . . . 
+. . . f 2 2 1 2 2 2 2 f . . . . 
+. . . f 2 2 2 2 2 2 2 f . . . . 
+. . . . f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`],
+    100,
+    false
+    )
+    MC.setVelocity(0, 80)
+})
+controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    E3,
+    [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f f f f f . . . . . 
+. . . f c c 1 1 1 1 1 f . . . . 
+. . . f c 1 1 1 1 f 1 f . . . . 
+. . . f c 1 1 1 f 1 1 f . . . . 
+. . . f c c 1 1 1 1 1 f . . . . 
+. . . f c c 1 1 f f 1 f . . . . 
+. . . f c c c 1 f f 1 f . . . . 
+. . . f c c 1 1 1 1 1 f . . . . 
+. . . . f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`],
+    100,
+    false
+    )
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy2, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    info.changeScoreBy(-1)
     pause(500)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -328,138 +460,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     if (info.score() == 5) {
         MC.say("I'm to full!", 2000)
     }
-})
-controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    E3,
-    [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f f f f f f f . . . . . 
-. . . f c c 1 1 1 1 1 f . . . . 
-. . . f c 1 1 1 1 f 1 f . . . . 
-. . . f c 1 1 1 f 1 1 f . . . . 
-. . . f c c 1 1 1 1 1 f . . . . 
-. . . f c c 1 1 f f 1 f . . . . 
-. . . f c c c 1 f f 1 f . . . . 
-. . . f c c 1 1 1 1 1 f . . . . 
-. . . . f f f f f f f . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`],
-    100,
-    false
-    )
-})
-controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    E3,
-    [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f f f f f f f . . . . . 
-. . . f c c c c c c c f . . . . 
-. . . f c c c c 1 1 c f . . . . 
-. . . f 1 c 1 1 1 1 1 f . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
-. . . f 1 f f 1 f 1 1 f . . . . 
-. . . f 1 f f 1 1 f 1 f . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
-. . . . f f f f f f f . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`],
-    100,
-    false
-    )
-})
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    MC,
-    [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f f f f f f f . . . . . 
-. . . f 1 1 1 1 1 2 2 f . . . . 
-. . . f 1 f 1 1 2 2 2 f . . . . 
-. . . f 1 1 f 1 1 2 2 f . . . . 
-. . . f 1 1 1 1 1 2 2 f . . . . 
-. . . f 1 f f 1 1 1 2 f . . . . 
-. . . f 1 f f 1 1 1 2 f . . . . 
-. . . f 1 1 1 1 1 2 2 f . . . . 
-. . . . f f f f f f f . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`],
-    100,
-    false
-    )
-    MC.setVelocity(80, 0)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy2, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
-    info.changeScoreBy(-1)
-    pause(500)
-})
-controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    E3,
-    [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f f f f f f f . . . . . 
-. . . f 1 1 1 1 1 c c f . . . . 
-. . . f 1 f 1 1 c c c f . . . . 
-. . . f 1 1 f 1 1 c c f . . . . 
-. . . f 1 1 1 1 1 c c f . . . . 
-. . . f 1 f f 1 1 1 c f . . . . 
-. . . f 1 f f 1 1 1 c f . . . . 
-. . . f 1 1 1 1 1 c c f . . . . 
-. . . . f f f f f f f . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`],
-    100,
-    false
-    )
-})
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.runImageAnimation(
-    MC,
-    [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . f f f f f f f . . . . . 
-. . . f 2 2 2 2 2 2 2 f . . . . 
-. . . f 2 2 2 2 1 1 2 f . . . . 
-. . . f 1 2 1 1 1 1 1 f . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
-. . . f 1 f f 1 f 1 1 f . . . . 
-. . . f 1 f f 1 1 f 1 f . . . . 
-. . . f 1 1 1 1 1 1 1 f . . . . 
-. . . . f f f f f f f . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`],
-    100,
-    false
-    )
-    MC.setVelocity(0, -80)
 })
 let M4: Sprite = null
 let M3: Sprite = null
